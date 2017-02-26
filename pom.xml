@@ -11,8 +11,20 @@
         <module>gear-guide-server</module>
         <module>gear-guide-client</module>
         <module>gear-guide-api</module>
+        <module>gear-guide-bom</module>
     </modules>
     <packaging>pom</packaging>
 
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
