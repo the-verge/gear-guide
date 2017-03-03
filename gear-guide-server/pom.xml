@@ -29,15 +29,43 @@
             <groupId>com.verge</groupId>
             <artifactId>gear-guide-api</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.jboss.spec</groupId>
             <artifactId>jboss-javaee-7.0</artifactId>
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
+        </dependency>
+
+        <!-- API only needed for compile time -->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.deltaspike.core</groupId>-->
+            <!--<artifactId>deltaspike-core-api</artifactId>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.apache.deltaspike.core</groupId>-->
+            <!--<artifactId>deltaspike-core-impl</artifactId>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+
+        <!-- API only needed for compile time -->
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-data-module-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-data-module-impl</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
