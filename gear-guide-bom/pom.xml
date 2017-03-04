@@ -18,6 +18,8 @@
         <deltaspike.version>1.7.2</deltaspike.version>
         <jboss.spec.version>1.0.4.Final</jboss.spec.version>
         <javaee-api.version>7.0</javaee-api.version>
+        <flyway.version>4.0</flyway.version>
+        <mysql.connector.version>6.0.5</mysql.connector.version>
     </properties>
 
     <dependencyManagement>
@@ -51,21 +53,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--&lt;!&ndash; API only needed for compile time &ndash;&gt;-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.deltaspike.core</groupId>-->
-                <!--<artifactId>deltaspike-core-api</artifactId>-->
-                <!--<version>${deltaspike.version}</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.apache.deltaspike.core</groupId>-->
-                <!--<artifactId>deltaspike-core-impl</artifactId>-->
-                <!--<version>${deltaspike.version}</version>-->
-                <!--<scope>runtime</scope>-->
-            <!--</dependency>-->
-
             <!-- API only needed for compile time -->
             <dependency>
                 <groupId>org.apache.deltaspike.modules</groupId>
@@ -78,6 +65,19 @@
                 <groupId>org.apache.deltaspike.modules</groupId>
                 <artifactId>deltaspike-data-module-impl</artifactId>
                 <version>${deltaspike.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
                 <scope>runtime</scope>
             </dependency>
 
