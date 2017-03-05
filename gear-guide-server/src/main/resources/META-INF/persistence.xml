@@ -3,17 +3,15 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
              version="1.0">
 
-    <persistence-unit name="gear_guide">
+    <persistence-unit name="gear_guide_dev">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>java:/gear_guide</jta-data-source>
-        <properties>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gear_guide?autoReconnect=true"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value=""/>
-            <property name="hibernate.show_sql" value="true"/>
-            <!--<property name="hibernate.cache.use_second_level_cache" value="false"/>-->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-        </properties>
+        <jta-data-source>java:/gear_guide_dev</jta-data-source>
+        <class>com.verge.entity.Player</class>
+    </persistence-unit>
+
+    <persistence-unit name="gear_guide_prod">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>java:/gear_guide_prod</jta-data-source>
+        <class>com.verge.entity.Player</class>
     </persistence-unit>
 </persistence>

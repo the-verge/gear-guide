@@ -10,11 +10,11 @@ import javax.inject.Inject;
 public class Bootstrap {
 
     @Inject
-    private PersistenceSetup persistenceSetup;
+    private DbMigration dbMigration;
 
     @PostConstruct
     public void init() {
-        persistenceSetup.setUpPersistence();
+        dbMigration.migrateDb();
     }
 
 }
