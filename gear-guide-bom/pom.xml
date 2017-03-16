@@ -22,6 +22,8 @@
         <mysql.connector.version>6.0.5</mysql.connector.version>
         <guava.version>21.0</guava.version>
         <junit.version>4.12</junit.version>
+        <arquillian.version>1.1.12.Final</arquillian.version>
+        <arquillian.chameleon.version>1.0.0.Alpha7</arquillian.chameleon.version>
     </properties>
 
     <dependencyManagement>
@@ -94,6 +96,27 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.junit</groupId>
+                <artifactId>arquillian-junit-container</artifactId>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.arquillian.container</groupId>
+                <artifactId>arquillian-container-chameleon</artifactId>
+                <version>${arquillian.chameleon.version}</version>
+                <scope>test</scope>
             </dependency>
 
         </dependencies>

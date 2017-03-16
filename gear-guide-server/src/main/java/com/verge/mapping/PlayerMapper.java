@@ -4,20 +4,32 @@ package com.verge.mapping;
 import com.verge.dto.PlayerInfo;
 import com.verge.entity.Player;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class PlayerMapper {
+public class PlayerMapper implements Mapper<Player, PlayerInfo> {
 
-    public PlayerInfo mapEntity(Player entity) {
+    @Override
+    public PlayerInfo entityToDto(Player entity) {
         return new PlayerInfo(entity.getName(), entity.getAge());
     }
 
-    public List<PlayerInfo> mapEntities(List<Player> entities) {
-        List<PlayerInfo> dtos = new ArrayList<PlayerInfo>();
-        for (Player entity : entities) {
-            dtos.add(mapEntity(entity));
-        }
-        return dtos;
+    @Override
+    public List<PlayerInfo> entitiesToDtos(Collection<Player> entities) {
+        return entities.stream()
+                .map(e -> entityToDto(e))
+                .collect(Collectors.toList());
     }
+
+    @Override
+    public Player dtoToEntity(PlayerInfo dto) {
+        return null;
+    }
+
+    @Override
+    public List<Player> dtosToEntities(Collection<PlayerInfo> dtos) {
+        return null;
+    }
+
 }
