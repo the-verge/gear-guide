@@ -1,7 +1,6 @@
 package com.verge.repository;
 
 import com.verge.entity.Player;
-import com.verge.test.common.BaseITest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -17,7 +16,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Arquillian.class)
-public class PlayerRepositoryITest extends BaseITest {
+public class PlayerRepositoryITest {
 
 //    @Deployment
 //    public static WebArchive createDeployment() {
@@ -37,7 +36,7 @@ public class PlayerRepositoryITest extends BaseITest {
 //        return war;
 //    }
 
-    @Deployment(testable = false)
+    @Deployment(testable = true)
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(MavenImporter.class)
                 .loadPomFromFile("pom.xml")
@@ -49,10 +48,15 @@ public class PlayerRepositoryITest extends BaseITest {
     private PlayerRepository playerRepository;
 
     @Test
-    //@RunAsClient
-    public void testGetAllPlayers() throws Exception {
+    public void getAllPlayers() throws Exception {
         List<Player> players = playerRepository.findAll();
-        assertThat(players.size(), equalTo(4));
+        assertThat(players.size(), equalTo(6));
+    }
+
+    @Test
+    public void getPlayerById() {
+        Player player = playerRepository.findBy(1L);
+        assertThat(player.getName(), equalTo("Jimmy Page"));
     }
 
 }

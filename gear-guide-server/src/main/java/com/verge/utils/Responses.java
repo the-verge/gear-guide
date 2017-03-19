@@ -4,7 +4,10 @@ import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.Response.Status;
 
-public class Responses {
+public final class Responses {
+
+    private Responses() {
+    }
 
     public static Response ok() {
         return Response.ok().build();

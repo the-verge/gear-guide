@@ -3,9 +3,7 @@ package com.verge.infrastructure;
 import org.flywaydb.core.Flyway;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import java.util.Map;
-import java.util.Properties;
 
 
 public class DbMigration {

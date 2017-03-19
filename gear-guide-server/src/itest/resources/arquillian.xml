@@ -9,8 +9,8 @@
         <property name="chameleonTarget">wildfly:10.1.0.Final:remote</property>
         <property name="managementAddress">localhost</property>
         <property name="managementPort">9990</property>
-        <property name="username">john</property>
-        <property name="password">john!</property>
+        <property name="username">admin</property>
+        <property name="password">admin!</property>
         </configuration>
 
         <!--<configuration>-->
