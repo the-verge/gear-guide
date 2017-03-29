@@ -25,6 +25,7 @@
         <arquillian.version>1.1.12.Final</arquillian.version>
         <arquillian.chameleon.version>1.0.0.Alpha7</arquillian.chameleon.version>
         <shrinkwrap.resolver.version>2.2.6</shrinkwrap.resolver.version>
+        <slf4j.version>1.7.25</slf4j.version>
     </properties>
 
     <dependencyManagement>
@@ -126,6 +127,14 @@
                 <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
                 <version>${shrinkwrap.resolver.version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <!-- Logging dependencies -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+                <scope>provided</scope>
             </dependency>
 
         </dependencies>

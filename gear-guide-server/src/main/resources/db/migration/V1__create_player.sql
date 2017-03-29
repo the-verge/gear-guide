@@ -4,8 +4,3 @@ CREATE TABLE IF NOT EXISTS Player (
   age INT DEFAULT NULL,
   PRIMARY KEY (id)
 );
-
-INSERT INTO Player (name, age) VALUES
-  ("Jimmy Page", 74),
-  ("Slash", 53),
-  ("John Mayer", 39);

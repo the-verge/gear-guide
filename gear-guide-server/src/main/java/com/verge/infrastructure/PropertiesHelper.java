@@ -2,6 +2,8 @@ package com.verge.infrastructure;
 
 import com.google.common.collect.Maps;
 import org.apache.deltaspike.core.api.projectstage.ProjectStage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.io.FileNotFoundException;
@@ -12,6 +14,8 @@ import java.util.Map;
 import java.util.Properties;
 
 public class PropertiesHelper {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PropertiesHelper.class);
 
     private static final String PERSISTENCE_UNIT_NAME_KEY = "persistenceUnitName";
 
@@ -39,10 +43,8 @@ public class PropertiesHelper {
         Properties properties = new Properties();
         try {
             properties.load(getInputStream());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Could not load persistence unit properties file: " + getFilePath());
         }
         return properties;
     }
@@ -56,7 +58,7 @@ public class PropertiesHelper {
         return MessageFormat.format(propertiesFilePathTemplate, getEnv());
     }
 
-    private String getEnv() {
+    String getEnv() {
         return projectStage.toString();
     }
 }
