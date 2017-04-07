@@ -5,6 +5,7 @@ var webserver = require('gulp-webserver');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var minify = require('gulp-minify');
+var inject = require('gulp-inject');
 
 gulp.task('default', function() {
     gulp.start('serve');
@@ -31,10 +32,16 @@ gulp.task('minify', ['lint'], function() {
             exclude: [],
             ignoreFiles: []
         }))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('target/dist'))
 });
 
-gulp.task('serve', function() {
+gulp.task('inject', function () {
+    gulp.src('./src/app/index.html')
+        .pipe(inject(gulp.src(['./src/**/*.css', './src/**/*.js'], {read: false}), {relative: true}))
+        .pipe(gulp.dest('./src/app'));
+});
+
+gulp.task('serve', ['inject'], function() {
     gulp.src('./src/app')
         .pipe(webserver({
             host: '0.0.0.0',

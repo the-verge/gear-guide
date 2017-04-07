@@ -1,5 +1,5 @@
-var dave = 'dave'  ;
-
 function myFunc(){
-    console.log('myFunc')   ;
+    console.log('js...');
 }
+
+myFunc();
