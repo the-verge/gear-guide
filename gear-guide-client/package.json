@@ -1,24 +1,30 @@
 {
   "name": "gear-guide",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "wiredep": "^4.0.0"
+  },
   "scripts": {
     "test": "gulp test"
   },
   "devDependencies": {
-    "angular": "~1.6.2",
-    "gulp": "~3.8.10",
+    "gulp": "^3.9.1",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-clean-css": "^3.0.4",
     "gulp-cli": "^1.2.2",
-    "gulp-inject": "~1.1.1",
-    "gulp-jshint": "~1.9.0",
-    "gulp-minify": "0.0.15",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-inject": "^4.2.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-less": "^3.3.0",
+    "gulp-lesshint": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-util": "^3.0.8",
     "gulp-webserver": "^0.9.1",
-    "karma": "~0.12.31",
-    "lodash": "~3.2.0",
-    "protractor": "~1.7.0",
-    "gulp-htmlmin": "^3.0.0",
+    "jshint": "^2.9.4",
     "jshint-stylish": "^2.2.1",
-    "gulp-uglify": "^2.1.2"
+    "less": "^2.7.2",
+    "main-bower-files": "^2.13.1"
   },
   "engines": {
     "node": ">=0.10.0"

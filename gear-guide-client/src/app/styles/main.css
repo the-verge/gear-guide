@@ -1,0 +1,13 @@
+.core {
+  background-color: darkolivegreen;
+}
+.core-right {
+  background-color: aqua;
+  float: left;
+}
+
+.player {
+  background-color: blue;
+}
+
+/*# sourceMappingURL=main.css.map */

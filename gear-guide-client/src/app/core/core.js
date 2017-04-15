@@ -1,5 +1,5 @@
 function anotherFunc () {
-    return 1;
+    console.log('goodbye');
 }
 
 anotherFunc();
