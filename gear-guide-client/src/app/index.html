@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gear Guide</title>
 
+    <!-- build:css styles/dist.min.css -->
     <!-- bower:css -->
-    <!-- endinject -->
+    <!-- endbower -->
 
     <!-- inject:css -->
     <!-- endinject -->
+    <!-- endbuild -->
 </head>
 <body>
-    <h1><div class="core">Hello</div><div class="core-right">Mofo</div></h1>
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#" ui-sref="players">Player List</a></li>
+    </ul>
 
-    <div class="player">Player goes</div>
+    <div class="container">
+        <ui-view></ui-view>
+    </div>
 
+    <!-- build:js scripts/dist.min.js -->
     <!-- bower:js -->
-    <!-- endinject -->
+    <!-- endbower -->
 
     <!-- inject:js -->
     <!-- endinject -->
+    <!-- endbuild -->
 </body>
 </html>

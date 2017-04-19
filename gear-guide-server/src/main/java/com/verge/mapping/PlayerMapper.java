@@ -12,7 +12,7 @@ public class PlayerMapper implements Mapper<Player, PlayerInfo> {
 
     @Override
     public PlayerInfo entityToDto(Player entity) {
-        return new PlayerInfo(entity.getName(), entity.getAge());
+        return new PlayerInfo(entity.getId(), entity.getName(), entity.getAge());
     }
 
     @Override

@@ -1,0 +1,14 @@
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Players</div>
+
+        <table class="table">
+            <tr class="row"><th>Name</th><th>Age</th></tr>
+            <tr class="row"
+                ng-repeat="player in vm.players"
+                ng-click="vm.getPlayer(player.id)">
+                <td>{{player.name}}</td><td>{{player.age}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

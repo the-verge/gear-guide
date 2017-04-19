@@ -9,11 +9,11 @@
         <class>com.verge.entity.Player</class>
     </persistence-unit>
 
-    <persistence-unit name="gear_guide_itest">
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>java:/gear_guide_itest</jta-data-source>
-        <class>com.verge.entity.Player</class>
-    </persistence-unit>
+    <!--<persistence-unit name="gear_guide_itest">-->
+        <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+        <!--<jta-data-source>java:/gear_guide_itest</jta-data-source>-->
+        <!--<class>com.verge.entity.Player</class>-->
+    <!--</persistence-unit>-->
 
     <persistence-unit name="gear_guide_prod">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>

@@ -15,7 +15,6 @@
     <properties>
         <node.version>v7.5.0</node.version>
         <gulp.task>package</gulp.task>
-        <skip.jshint>false</skip.jshint>
     </properties>
 
     <build>
@@ -46,26 +45,15 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>gulp build</id>
+                        <id>gulp package</id>
                         <goals>
                             <goal>gulp</goal>
                         </goals>
                         <phase>generate-resources</phase>
-                        <!--<configuration>-->
-                            <!--<arguments>${gulp.task}</arguments>-->
-                        <!--</configuration>-->
+                        <configuration>
+                            <arguments>${gulp.task}</arguments>
+                        </configuration>
                     </execution>
-                    <!--<execution>-->
-                        <!--<id>gulp script validate</id>-->
-                        <!--<goals>-->
-                            <!--<goal>gulp</goal>-->
-                        <!--</goals>-->
-                        <!--<phase>generate-resources</phase>-->
-                        <!--<configuration>-->
-                            <!--<skip>${skip.jshint}</skip>-->
-                            <!--<arguments>scripts:dist</arguments>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
                 </executions>
             </plugin>
 

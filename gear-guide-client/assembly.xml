@@ -6,7 +6,7 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
         <fileSet>
-            <directory>src</directory>
+            <directory>target/dist</directory>
             <outputDirectory>/</outputDirectory>
         </fileSet>
     </fileSets>

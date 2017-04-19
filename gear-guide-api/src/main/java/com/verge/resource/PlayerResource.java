@@ -20,7 +20,4 @@ public interface PlayerResource {
     @GET
     Response getPlayer(@PathParam("id") Long id);
 
-    @Path("/query")
-    @GET
-    Response getPlayerByName(@QueryParam("name") String name);
 }
