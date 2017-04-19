@@ -17,45 +17,53 @@ const connect = require('gulp-connect');
 const copy = require('gulp-copy');
 const gulpWatch = require('gulp-watch');
 const wiredep = require('wiredep').stream;
+const gulpSequence = require('gulp-sequence');
+const traceur = require('gulp-traceur');
+const babel = require('gulp-babel');
 
-const JS_PATTERN = './src/app/**/*.js';
-const LESS_PATTERN = './src/app/**/*.less';
-const HTML_PATTERN = './src/app/**/*.html';
-
-const WATCHED_FILES = new Array(JS_PATTERN, LESS_PATTERN, HTML_PATTERN);
-
-const CSS_PATTERN = './src/app/styles/**/*.css';
-
-const INDEX_HTML = './src/app/index.html';
 const APP_DIR = './src/app';
-const STYLES_DIR = './src/app/styles';
+const DIST_DIR = './.tmp/app';
+const STYLES_DIR = './.tmp/app/styles';
 
-const DIST = '.tmp/app';
+const APP = {
+    index: APP_DIR + '/index.html',
+    html: APP_DIR + '/**/*.html',
+    js: APP_DIR + '/**/*.js',
+    less: APP_DIR + '/**/*.less',
+    css: APP_DIR + '/styles/**/*.css'
+};
+
+const DIST = {
+    index: DIST_DIR + '/index.html',
+    html: DIST_DIR + '/**/*.html',
+    js: DIST_DIR + '/**/*.js',
+    less: DIST_DIR + '/**/*.less',
+    css: DIST_DIR + '/styles/**/*.css'
+};
+
+const WATCHED_FILES = new Array(APP.js, APP.less, '!./src/app/styles', APP.html);
 
 let config = {
     production: !!gutil.env.production
 };
 
-
-gulp.task('copy-dist', function() {
-    gulp.src(APP_DIR + '/**/*', {base: APP_DIR})
-        .pipe(gulpWatch(APP_DIR, {base: APP_DIR}))
-        .pipe(gulp.dest(DIST));
+gulp.task('default', () => {
+    gulp.start('package');
 });
 
-gulp.task('default', () => {
-    gulp.start('serve');
+gulp.task('package', () => {
+    console.log('packaging...');
 });
 
 gulp.task('js-lint', () => {
-    gulp.src(JS_PATTERN)
+    gulp.src(APP.js)
         .pipe(jshint())
         .pipe(jshint.reporter(stylish))
         .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('styles-lint', () => {
-    gulp.src(LESS_PATTERN)
+    gulp.src(APP.less)
         .pipe(lesshint({
             // options
         }))
@@ -63,9 +71,9 @@ gulp.task('styles-lint', () => {
         .pipe(lesshint.failOnError());
 });
 
-gulp.task('serve', ['inject', 'watch'], () => {
+gulp.task('serve', ['prepare-dist', 'watch'], () => {
     connect.server({
-        root: [APP_DIR],
+        root: [DIST_DIR],
         port: 8585,
         livereload: true,
         middleware: function(connect) {
@@ -75,7 +83,7 @@ gulp.task('serve', ['inject', 'watch'], () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch(WATCHED_FILES, ['compile-less', 'inject', 'copy-dist', 'reload']);
+    gulp.watch(WATCHED_FILES, ['refresh']);
 });
 
 gulp.task('reload', () => {
@@ -84,15 +92,15 @@ gulp.task('reload', () => {
 });
 
 gulp.task('inject', ['compile-less'], () => {
-    gulp.src(INDEX_HTML)
+    return gulp.src(DIST.index)
         .pipe(inject(gulp.src(mainBowerFiles(), {read: false}), {name: 'bower', relative: true}))
         //.pipe(wiredep())
-        .pipe(inject(gulp.src([CSS_PATTERN, JS_PATTERN], {read: false}), {relative: true})) //don't use read option with angularFileSort()
-        .pipe(gulp.dest(APP_DIR));
+        .pipe(inject(gulp.src([DIST.js, DIST.css], {read: false}), {relative: true})) //don't use read option with angularFileSort()
+        .pipe(gulp.dest(DIST_DIR));
 });
 
 gulp.task('compile-less', () => {
-    gulp.src(LESS_PATTERN)
+    gulp.src(APP.less)
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(concat('main.css'))
@@ -101,3 +109,22 @@ gulp.task('compile-less', () => {
         .pipe(gulp.dest(STYLES_DIR));
 });
 
+gulp.task('refresh', (callback) => {
+    gulpSequence('prepare-dist', 'reload') (callback);
+});
+
+gulp.task('prepare-dist', (callback) => {
+    gulpSequence('copy-dist', 'transpile', 'inject') (callback);
+});
+
+gulp.task('copy-dist', () => {
+    return gulp.src(APP_DIR + '/**/*', {base: APP_DIR})
+        //.pipe(gulpWatch(APP_DIR, {base: APP_DIR}))
+        .pipe(gulp.dest(DIST_DIR));
+});
+
+gulp.task('transpile', () => {
+    return gulp.src(DIST.js)
+        .pipe(traceur())
+        .pipe(gulp.dest(DIST_DIR));
+});

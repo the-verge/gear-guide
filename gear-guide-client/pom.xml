@@ -46,14 +46,14 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>gulp build</id>
+                        <id>gulp package</id>
                         <goals>
                             <goal>gulp</goal>
                         </goals>
                         <phase>generate-resources</phase>
-                        <!--<configuration>-->
-                            <!--<arguments>${gulp.task}</arguments>-->
-                        <!--</configuration>-->
+                        <configuration>
+                            <arguments>${gulp.task}</arguments>
+                        </configuration>
                     </execution>
                     <!--<execution>-->
                         <!--<id>gulp script validate</id>-->
