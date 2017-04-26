@@ -20,6 +20,11 @@ const wiredep = require('wiredep').stream;
 const gulpSequence = require('gulp-sequence');
 const traceur = require('gulp-traceur');
 const babel = require('gulp-babel');
+const es2015 = require('babel-preset-es2015');
+
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const babelify = require('babelify');
 
 const APP_DIR = './src/app';
 const DIST_DIR = './.tmp/app';
@@ -46,6 +51,14 @@ const WATCHED_FILES = new Array(APP.js, APP.less, '!./src/app/styles', APP.html)
 let config = {
     production: !!gutil.env.production
 };
+
+gulp.task('js', () => {
+    browserify('./src/app/app.module.js')
+        .transform('babelify', {presets: ['es2015']})
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(gulp.dest('./src/scripts'));
+})
 
 gulp.task('default', () => {
     gulp.start('package');
@@ -95,7 +108,7 @@ gulp.task('inject', ['compile-less'], () => {
     return gulp.src(DIST.index)
         .pipe(inject(gulp.src(mainBowerFiles(), {read: false}), {name: 'bower', relative: true}))
         //.pipe(wiredep())
-        .pipe(inject(gulp.src([DIST.js, DIST.css], {read: false}), {relative: true})) //don't use read option with angularFileSort()
+        .pipe(inject(gulp.src(['./src/scripts/main.js', DIST.css], {read: false}), {relative: true})) //don't use read option with angularFileSort()
         .pipe(gulp.dest(DIST_DIR));
 });
 
@@ -125,6 +138,8 @@ gulp.task('copy-dist', () => {
 
 gulp.task('transpile', () => {
     return gulp.src(DIST.js)
-        .pipe(traceur())
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(gulp.dest(DIST_DIR));
 });
